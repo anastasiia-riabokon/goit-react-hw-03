@@ -7,7 +7,6 @@ import {useId} from "react";
 export const ContactForm = ({onAdd}) => {
   const idFieldName = useId();
   const idFieldNumber = useId();
-  const idNewContact = useId();
 
   const initialValues = {
     nameContact: "",
@@ -16,7 +15,7 @@ export const ContactForm = ({onAdd}) => {
 
   const handleSubmit = (values, actions) => {
     onAdd({
-      id: idNewContact,
+      id: crypto.randomUUID(),
       name: values.nameContact,
       number: values.numberContact,
     });
