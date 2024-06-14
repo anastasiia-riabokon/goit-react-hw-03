@@ -6,13 +6,10 @@ export const ContactList = ({users, deleteContact}) => {
     <ul className={css.list}>
       {users.map((user) => (
         <li className={css.item} key={user.id}>
-          <Contact values={user} />
-          <button
-            className={css.btn}
-            onClick={() => deleteContact(user.id)}
-          >
-            Delete
-          </button>
+          <Contact
+            values={user}
+            deleteContact={deleteContact}
+          />
         </li>
       ))}
     </ul>

@@ -31,6 +31,8 @@ export const ContactForm = ({onAdd}) => {
         "Name must consist only of letters!"
       )
       .required("Required"),
+
+    numberContact: Yup.string().required("Required"),
   });
 
   return (

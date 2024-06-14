@@ -16,11 +16,6 @@
   border-bottom: 1px solid black;
 }
 
-.btn {
-  composes: btn from "../ContactForm/ContactForm.module.css";
-  height: 34px;
-}
-
 .list::-webkit-scrollbar {
   width: 5px;
 }
