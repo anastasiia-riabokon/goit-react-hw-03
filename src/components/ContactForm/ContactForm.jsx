@@ -25,10 +25,17 @@ export const ContactForm = ({onAdd}) => {
     nameContact: Yup.string()
       .min(3, "Too short!")
       .max(50, "Too long!")
+      .matches(
+        /^[A-Za-z]+$/,
+        "Name must consist only of letters!"
+      )
       .required("Required"),
 
-    numberContact: Yup.string().required("Required"),
+    numberContact: Yup.string()
+      .matches(/^\d{3}-\d{2}-\d{2}$/, "Invalid number")
+      .required("Required"),
   });
+
   return (
     <Formik
       initialValues={initialValues}
@@ -44,6 +51,7 @@ export const ContactForm = ({onAdd}) => {
             type="text"
             name="nameContact"
             className={css.field}
+            placeholder="John"
           />
           <ErrorMessage
             name="nameContact"
@@ -58,6 +66,7 @@ export const ContactForm = ({onAdd}) => {
             id={idFieldNumber}
             type="text"
             name="numberContact"
+            placeholder="123-45-67"
             className={css.field}
           />
           <ErrorMessage
