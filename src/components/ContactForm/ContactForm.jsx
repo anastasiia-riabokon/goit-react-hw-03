@@ -2,11 +2,12 @@ import {ErrorMessage, Field, Form, Formik} from "formik";
 import css from "./ContactForm.module.css";
 import * as Yup from "yup";
 import ReactInputMask from "react-input-mask";
+import {useId} from "react";
 
 export const ContactForm = ({onAdd}) => {
-  const idFieldName = crypto.randomUUID();
-  const idFieldNumber = crypto.randomUUID();
-  const idNewContact = crypto.randomUUID();
+  const idFieldName = useId();
+  const idFieldNumber = useId();
+  const idNewContact = useId();
 
   const initialValues = {
     nameContact: "",
@@ -69,9 +70,10 @@ export const ContactForm = ({onAdd}) => {
               {({field}) => (
                 <ReactInputMask
                   {...field}
-                  mask="+3 (999) 999-99-99"
+                  className={css.field}
+                  mask="999-99-99"
                   maskChar="_"
-                  placeholder="+3 (___) ___-__-__"
+                  placeholder="___-__-__"
                   onChange={(e) =>
                     setFieldValue(
                       "numberContact",
