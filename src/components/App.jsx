@@ -5,6 +5,7 @@ import SearchBox from "./SearchBox/SearchBox";
 import ContactForm from "./ContactForm/ContactForm";
 import initialContacts from "../data/contacts.json";
 import {useLocalStorage} from "./hook/useLocalStorage";
+import Notification from "./Notification/Notification";
 
 function App() {
   const [contacts, setContacts] = useLocalStorage(
@@ -37,10 +38,14 @@ function App() {
         searchValue={searchContact}
         onSearchValue={setSearchContacts}
       />
-      <ContactList
-        users={filteredContacts}
-        deleteContact={handleDeleteContact}
-      />
+      {filteredContacts.length !== 0 ? (
+        <ContactList
+          users={filteredContacts}
+          deleteContact={handleDeleteContact}
+        />
+      ) : (
+        <Notification />
+      )}
     </div>
   );
 }
