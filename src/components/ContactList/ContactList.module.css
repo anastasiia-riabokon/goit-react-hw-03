@@ -3,6 +3,8 @@
   top: 30%;
   right: 50px;
   width: 50%;
+  height: 50%;
+  overflow: auto;
 }
 
 .item {
@@ -17,4 +19,21 @@
 .btn {
   composes: btn from "../ContactForm/ContactForm.module.css";
   height: 34px;
+}
+
+.list::-webkit-scrollbar {
+  width: 5px; /* ширина скролбара */
+}
+
+.list::-webkit-scrollbar-track {
+  background-color: transparent; /* колір фону треку */
+}
+
+.list::-webkit-scrollbar-thumb {
+  background-color: #b326a3; /* колір пальця скролбара */
+  border-radius: 5px; /* радіус кутиків пальця */
+}
+
+.list::-webkit-scrollbar-thumb:hover {
+  background-color: #b815c1; /* колір пальця скролбара при наведенні */
 }
