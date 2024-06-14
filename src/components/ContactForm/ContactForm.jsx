@@ -1,6 +1,7 @@
 import {ErrorMessage, Field, Form, Formik} from "formik";
 import css from "./ContactForm.module.css";
 import * as Yup from "yup";
+import ReactInputMask from "react-input-mask";
 
 export const ContactForm = ({onAdd}) => {
   const idFieldName = crypto.randomUUID();
@@ -30,10 +31,6 @@ export const ContactForm = ({onAdd}) => {
         "Name must consist only of letters!"
       )
       .required("Required"),
-
-    numberContact: Yup.string()
-      .matches(/^\d{3}-\d{2}-\d{2}$/, "Invalid number")
-      .required("Required"),
   });
 
   return (
@@ -42,44 +39,60 @@ export const ContactForm = ({onAdd}) => {
       onSubmit={handleSubmit}
       validationSchema={FeedbackSchema}
     >
-      <Form className={css.form}>
-        <h2 className={css.title}>Add Contact</h2>
-        <label htmlFor="{idFieldName}">
-          <span className={css.label}>Name</span>
-          <Field
-            id={idFieldName}
-            type="text"
-            name="nameContact"
-            className={css.field}
-            placeholder="John"
-          />
-          <ErrorMessage
-            name="nameContact"
-            component="div"
-            className={css.message__error}
-          />
-        </label>
+      {({setFieldValue}) => (
+        <Form className={css.form}>
+          <h2 className={css.title}>Add Contact</h2>
+          <label htmlFor="{idFieldName}">
+            <span className={css.label}>Name</span>
+            <Field
+              id={idFieldName}
+              type="text"
+              name="nameContact"
+              className={css.field}
+              placeholder="John"
+            />
+            <ErrorMessage
+              name="nameContact"
+              component="div"
+              className={css.message__error}
+            />
+          </label>
 
-        <label htmlFor="{idFieldNumber}">
-          <span className={css.label}>Number</span>
-          <Field
-            id={idFieldNumber}
-            type="text"
-            name="numberContact"
-            placeholder="123-45-67"
-            className={css.field}
-          />
-          <ErrorMessage
-            name="numberContact"
-            component="div"
-            className={css.message__error}
-          />
-        </label>
+          <label htmlFor="{idFieldNumber}">
+            <span className={css.label}>Number</span>
+            <Field
+              id={idFieldNumber}
+              type="text"
+              name="numberContact"
+              placeholder="123-45-67"
+            >
+              {({field}) => (
+                <ReactInputMask
+                  {...field}
+                  mask="+3 (999) 999-99-99"
+                  maskChar="_"
+                  placeholder="+3 (___) ___-__-__"
+                  onChange={(e) =>
+                    setFieldValue(
+                      "numberContact",
+                      e.target.value
+                    )
+                  }
+                />
+              )}
+            </Field>
+            <ErrorMessage
+              name="numberContact"
+              component="div"
+              className={css.message__error}
+            />
+          </label>
 
-        <button className={css.btn} type="submit">
-          Add contact
-        </button>
-      </Form>
+          <button className={css.btn} type="submit">
+            Add contact
+          </button>
+        </Form>
+      )}
     </Formik>
   );
 };
