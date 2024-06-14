@@ -27,9 +27,7 @@ export const ContactForm = ({onAdd}) => {
       .max(50, "Too long!")
       .required("Required"),
 
-    numberContact: Yup.string()
-      .min(3, "Too short!")
-      .required("Required"),
+    numberContact: Yup.string().required("Required"),
   });
   return (
     <Formik
@@ -38,33 +36,40 @@ export const ContactForm = ({onAdd}) => {
       validationSchema={FeedbackSchema}
     >
       <Form className={css.form}>
+        <h2 className={css.title}>Add Contact</h2>
         <label htmlFor="{idFieldName}">
-          <span>Name</span>
+          <span className={css.label}>Name</span>
           <Field
             id={idFieldName}
             type="text"
             name="nameContact"
+            className={css.field}
           />
           <ErrorMessage
             name="nameContact"
             component="div"
+            className={css.message__error}
           />
         </label>
 
         <label htmlFor="{idFieldNumber}">
-          <span>Number</span>
+          <span className={css.label}>Number</span>
           <Field
             id={idFieldNumber}
             type="text"
             name="numberContact"
+            className={css.field}
           />
           <ErrorMessage
             name="numberContact"
             component="div"
+            className={css.message__error}
           />
         </label>
 
-        <button type="submit">Add contact</button>
+        <button className={css.btn} type="submit">
+          Add contact
+        </button>
       </Form>
     </Formik>
   );

@@ -5,17 +5,17 @@ import {BsFillTelephoneFill} from "react-icons/bs";
 export const Contact = ({values}) => {
   const {name, number} = values;
   return (
-    <>
-      <div>
+    <div>
+      <div className={css.block}>
         <FaUser />
         <p>{name}</p>
       </div>
 
-      <div>
+      <div className={css.block}>
         <BsFillTelephoneFill />
         <p>{number}</p>
       </div>
-    </>
+    </div>
   );
 };
 export default Contact;

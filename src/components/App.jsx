@@ -1,11 +1,11 @@
 import {useState} from "react";
-// import "./App.css";
 import ContactList from "./ContactList/ContactList";
 import SearchBox from "./SearchBox/SearchBox";
 import ContactForm from "./ContactForm/ContactForm";
 import initialContacts from "../data/contacts.json";
 import {useLocalStorage} from "./hook/useLocalStorage";
 import Notification from "./Notification/Notification";
+import css from "./App.module.css"
 
 function App() {
   const [contacts, setContacts] = useLocalStorage(
@@ -32,7 +32,7 @@ function App() {
 
   return (
     <div>
-      <h1>Phonebook</h1>
+      <h1 className={css.title}>Phonebook</h1>
       <ContactForm onAdd={handleAddContact} />
       <SearchBox
         searchValue={searchContact}

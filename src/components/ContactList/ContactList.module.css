@@ -1,0 +1,20 @@
+.list {
+  position: absolute;
+  top: 30%;
+  right: 50px;
+  width: 50%;
+}
+
+.item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  padding: 5px;
+  border-bottom: 1px solid black;
+}
+
+.btn {
+  composes: btn from "../ContactForm/ContactForm.module.css";
+  height: 34px;
+}

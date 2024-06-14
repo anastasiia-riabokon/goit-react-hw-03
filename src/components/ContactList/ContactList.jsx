@@ -3,11 +3,14 @@ import css from "./ContactList.module.css";
 
 export const ContactList = ({users, deleteContact}) => {
   return (
-    <ul>
+    <ul className={css.list}>
       {users.map((user) => (
-        <li key={user.id}>
+        <li className={css.item} key={user.id}>
           <Contact values={user} />
-          <button onClick={() => deleteContact(user.id)}>
+          <button
+            className={css.btn}
+            onClick={() => deleteContact(user.id)}
+          >
             Delete
           </button>
         </li>
